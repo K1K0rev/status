@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('history_orders', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('order_id')->constrained()->onDelete('cascade');
+            $table->string('title');
+            $table->string('description');
+            $table->timestamps('created_date');
         });
     }
 

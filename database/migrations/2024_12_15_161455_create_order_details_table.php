@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('order_id')->constrained()->OnDelete('cascade');
+            $table->foreignId('service_id')->constrained()->OnDelete('cascade');
+            $table->float('total_price');
             $table->timestamps();
         });
     }
