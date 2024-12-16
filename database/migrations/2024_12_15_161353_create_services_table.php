@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('short_description');
             $table->float('price');
             $table->enum('status', ['active', 'not_active'])->default('active');
-            $table->timestamps('create_date');
+            $table->timestamps();
         });
     }
 
