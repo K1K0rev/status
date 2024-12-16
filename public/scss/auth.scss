@@ -1,0 +1,37 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter.ttf') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+}
+
+$primary: #1D2A40;
+
+body{
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    background-color: $primary;
+    width: 528px;
+    height: 604px;
+    border-radius: 10px;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    .password_label {
+        display: flex;
+        flex-direction: column;
+    }
+    input {
+        width: 411px;
+        padding: 11px;
+        
+    }
+}
