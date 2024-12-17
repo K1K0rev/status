@@ -7,31 +7,63 @@
 
 $primary: #1D2A40;
 
-body{
+body {
     margin: 0;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    display: flex;
+    img {
+        width: auto;
+        height: 50px;
+    }
+    div {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 form {
     display: flex;
     flex-direction: column;
+    align-items: center;
     background-color: $primary;
-    width: 528px;
-    height: 604px;
     border-radius: 10px;
     color: white;
     font-family: 'Inter', sans-serif;
-    .password_label {
+    padding: 64px 59px;
+    .inputs {
+        width: 100%;
         display: flex;
         flex-direction: column;
+        gap: 42px;
     }
-    input {
-        width: 411px;
-        padding: 11px;
-        
+    .password {
+        width: 100%;
+        margin-bottom: 116px;
     }
 }
+
+.form_section {
+    display: flex;
+    flex-direction: column;
+    width: 411px;
+    align-items: center;
+}
+
+.password_input {
+    width: auto;
+}
+
+.password_help {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+

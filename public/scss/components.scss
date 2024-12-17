@@ -1,0 +1,31 @@
+$button: #FFD700;
+$button_font: 32px;
+$input_font: 20px;
+
+button {
+    border: 0;
+    background-color: $button;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: $button_font;
+}
+
+.button_form {
+    padding: 10px 115px;
+}
+
+input, input:focus {
+    width: 100%;
+    padding: 11px;
+    border-radius: 5px;   
+    outline: none;
+    border: 0;
+    text-decoration: none;
+    font-size: $input_font;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
