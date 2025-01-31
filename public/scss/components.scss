@@ -1,17 +1,17 @@
-$button: #FFD700;
+$yellow: #FFD700;
 $button_font: 32px;
 $input_font: 20px;
 
 button {
     border: 0;
-    background-color: $button;
+    background-color: $yellow;
     border-radius: 10px;
     font-family: 'Inter', sans-serif;
     font-size: $button_font;
 }
 
 .button_form {
-    padding: 10px 115px;
+    
 }
 
 input, input:focus {
@@ -22,6 +22,17 @@ input, input:focus {
     border: 0;
     text-decoration: none;
     font-size: $input_font;
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+    border: 0;
+    padding: 0;
+}
+
+input[type="checkbox"]:focus {
+    outline: none;
+    width: auto;
 }
 
 a {
