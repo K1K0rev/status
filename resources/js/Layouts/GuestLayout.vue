@@ -1,21 +1,24 @@
 <script setup>
-import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import { Link } from '@inertiajs/vue3';
+import BackButton from '@/Components/BackButton.vue'
 </script>
 
 <template>
+    <div>
+        <Link href="/" class="flex h-[75px] m-8 absolute">
+            <BackButton>на главную</BackButton>
+        </Link>
+    </div>
     <div
-        class="flex min-h-screen flex-col items-center bg-gray-100 pt-6 sm:justify-center sm:pt-0"
+        class="flex min-h-screen flex-col items-center pt-6 sm:justify-center sm:pt-0"
     >
-        <div>
-            <Link href="/">
-                <ApplicationLogo class="h-20 w-20 fill-current text-gray-500" />
-            </Link>
+    
+    <div
+    class="mt-6 w-full overflow-hidden bg-primary px-6 py-4 shadow-md sm:max-w-md sm:rounded-lg"
+    >
+        <div class="flex justify-center">
+            <img src="/images/logo.png" alt="" class="w-24">
         </div>
-
-        <div
-            class="mt-6 w-full overflow-hidden bg-white px-6 py-4 shadow-md sm:max-w-md sm:rounded-lg"
-        >
             <slot />
         </div>
     </div>
