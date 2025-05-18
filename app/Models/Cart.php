@@ -10,17 +10,18 @@ class Cart extends Model
 {
     protected $fillable = [
         'user_id',
-        'service_id',
         'total_price',
     ];
 
-    protected function users() : BelongsTo
+    public function users() : BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    protected function cart_services() : BelongsToMany
+    public function services() : BelongsToMany
     {
-        return $this->belongsToMany(Service::class, 'cart_services');
+        return $this->belongsToMany(Service::class, 'cart_services')
+        ->orderBy('cart_services.created_at', 'asc')
+        ->withPivot('quantity');
     }
 }

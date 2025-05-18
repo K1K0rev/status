@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('cart_id')->constrained()->onDelete('cascade');
             $table->foreignId('service_id')->constrained()->onDelete('cascade');
-            $table->integer('quantity');
-            $table->float('custom_price');
+            $table->integer('quantity')->default(1);
+            $table->float('custom_price')->nullable();
             $table->timestamps();
         });
     }

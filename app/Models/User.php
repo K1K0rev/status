@@ -51,22 +51,22 @@ class User extends Authenticatable
         ];
     }
 
-    protected function carts() : HasOne
+    public function carts() : HasOne
     {
         return $this->hasOne(Cart::class);
     }
 
-    protected function chats() : HasMany
+    public function chats() : HasMany
     {
         return $this->hasMany(Cart::class);
     }
 
-    protected function messages() : HasMany
+    public function messages() : HasMany
     {
         return $this->hasMany(Cart::class);
     }
 
-    protected function orders() : HasMany
+    public function orders() : HasMany
     {
         return $this->hasMany(Cart::class);
     }

@@ -13,7 +13,7 @@ class History_order extends Model
         'description',
     ];
 
-    protected function orders() : BelongsTo
+    public function orders() : BelongsTo
     {
         return $this->belongsTo(Order::class);
     }

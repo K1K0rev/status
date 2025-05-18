@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('service_id')->constrained()->onDelete('cascade');
             $table->enum('status', ['new', 'in_progres', 'complete', 'rejected'])->default('new');
+            $table->decimal('total_price', 10, 2);
             $table->timestamps();
         });
     }

@@ -5,7 +5,7 @@ import Footer from "@/Components/Footer.vue";
 import Header from "@/Components/Header.vue";
 import HeaderInfo from "@/Components/HeaderInfo.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
-import { Head, Link } from "@inertiajs/vue3";
+import { Head } from "@inertiajs/vue3";
 import { route } from 'ziggy-js';
 import { onMounted, onUnmounted, provide, ref } from "vue";
 
@@ -17,8 +17,6 @@ defineProps({
         type: Boolean,
     },
 });
-
-provide("canLogin", "canLogin");
 
 const isVisible = ref(false);
 
@@ -37,7 +35,7 @@ onUnmounted(() => {
 });
 </script>
 
-<template>
+<template class="scroll-smooth">
     <Head title="Начальная"></Head>
 
     <HeaderInfo id="start"></HeaderInfo>
@@ -49,6 +47,7 @@ onUnmounted(() => {
             href="#start"
             class="w-auto bg-secondary border-0 rounded fixed right-8 bottom-8 p-2"
             v-if="isVisible"
+            
         >
             <img src="/images/arrow_up.png" alt="Стрелка вверх" class="w-8" />
         </a>
@@ -65,9 +64,7 @@ onUnmounted(() => {
                 <span class="text-secondary text-2xl drop-shadow-dark"
                     >Качественная защита по разумной цене</span
                 >
-                <Link :href="route('login')">
-                    <PrimaryButton>регистрируйся</PrimaryButton>
-                </Link>
+                <PrimaryButton :href="route('register')">регистрируйся</PrimaryButton>
             </div>
         </div>
 

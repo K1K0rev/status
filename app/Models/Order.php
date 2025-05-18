@@ -4,7 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Order extends Model
 {
@@ -12,25 +14,28 @@ class Order extends Model
         'user_id',
         'service_id',
         'status',
+        'total_price'
     ];
 
-    protected function users() : BelongsTo
+    public function users(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    protected function chats() : BelongsTo
+    public function chats(): HasOne
     {
-        return $this->belongsTo(Chat::class);
+        return $this->hasOne(Chat::class);
     }
 
-    protected function history_orders() : BelongsTo
+    public function history_orders(): BelongsTo
     {
         return $this->belongsTo(History_order::class);
     }
 
-    protected function order_details() : HasMany
+    public function services(): BelongsToMany
     {
-        return $this->hasMany(Order_detail::class);
+        return $this->belongsToMany(Service::class, 'order_services')
+            ->withPivot('quantity')
+            ->withTimestamps();
     }
 }

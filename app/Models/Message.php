@@ -13,12 +13,12 @@ class Message extends Model
         'text',
     ];
 
-    protected function chats() : BelongsTo
+    public function chats() : BelongsTo
     {
         return $this->belongsTo(Chat::class);
     }
 
-    protected function users() : BelongsTo
+    public function users() : BelongsTo
     {
         return $this->belongsTo(User::class);
     }

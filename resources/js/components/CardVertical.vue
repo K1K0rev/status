@@ -5,6 +5,7 @@ const cards = defineProps({
         image: String,
         text: String,
         alts: String,
+        href: String
     });
 </script>
 
@@ -13,7 +14,6 @@ const cards = defineProps({
         <img :src="cards.image" :alt="cards.alt" class="">
         <div class="text-center h-full flex flex-col items-center justify-center gap-8">
             <p class="drop-shadow-dark text-2xl uppercase">{{ cards.text }}</p>
-            <PrimaryButton>узнать больше</PrimaryButton>
         </div>
     </div>
 </template>

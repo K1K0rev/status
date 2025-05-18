@@ -14,17 +14,17 @@ class Chat extends Model
         'status',
     ];
 
-    protected function users() : BelongsTo
+    public function users() : BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    protected function orders() : BelongsTo
+    public function orders() : BelongsTo
     {
         return $this->belongsTo(Order::class);
     }
 
-    protected function messages() : HasMany
+    public function messages() : HasMany
     {
         return $this->hasMany(Message::class);
     }

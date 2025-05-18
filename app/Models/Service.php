@@ -15,15 +15,29 @@ class Service extends Model
         'short_description',
         'price',
         'status',
+        'img'
     ];
 
-    protected function carts() : BelongsToMany
+    public function toCartItem()
     {
-        return $this->belongsToMany(Cart::class, 'cart_services');
+        return [
+            'id' => $this->id,
+            'price' => $this->price,
+            'quantity' => $this->pivot->quantity,
+            'custom_price' => $this->pivot->custom_price,
+        ];
     }
 
-    protected function order_details() : HasMany
+    public function carts(): BelongsToMany
     {
-        return $this->hasMany(Order_detail::class);
+        return $this->belongsToMany(Cart::class, 'cart_services')
+            ->withPivot('quantity', 'custom_price');
+    }
+
+    public function orders(): BelongsToMany
+    {
+        return $this->belongsToMany(Order::class, 'order_services')
+            ->withPivot(['quantity', 'total_price'])
+            ->withTimestamps();
     }
 }

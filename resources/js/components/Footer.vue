@@ -2,7 +2,7 @@
 
 </script>
 <template>
-    <footer class="h-[400px] flex justify-between bg-[#1D2A40] rounded-lg text-white items-center px-[83px] py-[45px] m-8 text-xl">
+    <footer class="flex justify-between bg-[#1D2A40] text-white items-center px-8 py-6 text-xl">
         <div class="flex flex-col justify-between">
             <div class="flex flex-col gap-4 h-64">
                 <span class="uppercase">Контакты</span>
