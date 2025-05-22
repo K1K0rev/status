@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class History_order extends Model
+class HistoryOrder extends Model
 {
     protected $fillable = [
         'order_id',

@@ -58,16 +58,16 @@ class User extends Authenticatable
 
     public function chats() : HasMany
     {
-        return $this->hasMany(Cart::class);
+        return $this->hasMany(Chat::class);
     }
 
     public function messages() : HasMany
     {
-        return $this->hasMany(Cart::class);
+        return $this->hasMany(Message::class);
     }
 
     public function orders() : HasMany
     {
-        return $this->hasMany(Cart::class);
+        return $this->hasMany(Order::class);
     }
 }

@@ -27,9 +27,9 @@ class Order extends Model
         return $this->hasOne(Chat::class);
     }
 
-    public function history_orders(): BelongsTo
+    public function history_orders(): HasMany
     {
-        return $this->belongsTo(History_order::class);
+        return $this->hasMany(HistoryOrder::class);
     }
 
     public function services(): BelongsToMany

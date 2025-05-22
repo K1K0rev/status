@@ -28,7 +28,9 @@ const props = defineProps({
                 <img :src="service.img" alt="">
               </template>
               <template #name>
-                {{ service.name }}
+                <div class="uppercase">
+                  {{ service.name }}
+                </div>
               </template>
             </ServiceInfoCard>
           </Link>

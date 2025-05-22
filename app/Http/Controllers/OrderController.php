@@ -16,9 +16,9 @@ class OrderController extends Controller
         $user = Auth::user();
 
         $orders = Order::where('user_id', $user->id)->with('services')->get();
-        
+
         return Inertia::render('Orders', [
-            'orders' => $orders
+            'orders' => $orders->sortBy('created_at')->values()
         ]);
     }
 
@@ -31,13 +31,11 @@ class OrderController extends Controller
                 return $service->pivot->quantity * $service->price;
         });
 
-        // Создаем заказ
         $order = Order::create([
             'user_id' => $user->id,
             'total_price' => $total
         ]);
 
-        // Привязываем услуги к заказу
         foreach ($cartItems->services as $service) {
             $order->services()->attach($service->id, [
                 'quantity' => $service->pivot->quantity,
@@ -45,9 +43,28 @@ class OrderController extends Controller
             ]);
         }
 
-        // Очищаем корзину
         $cartItems->services()->detach();
 
         return redirect()->route('orders');
+    }
+
+    public function history() {
+
+        $user = Auth::user();
+
+        $orders = Order::where('user_id', $user->id)->with('services')->get();
+
+        return Inertia::render('OrdersHistory', [
+            'orders' => $orders->sortBy('created_at')->values()
+        ]);
+    }
+
+    public function info($id) {
+
+        $order = Auth::user()->orders()->with('history_orders')->find($id);
+
+        return Inertia::render('OrderInfo', [
+            'order' => $order
+        ]);
     }
 }

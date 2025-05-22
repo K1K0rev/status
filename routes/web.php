@@ -15,16 +15,17 @@ Route::get('/', function () {
     ]);
 })->middleware('guest');
 
-Route::get('/services/info/{id}', [ServiceController::class, 'info_id'])->name('service.info');
-Route::get('/services/info', [ServiceController::class, 'info'])->name('services.info');
-
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/chats', [ChatController::class, 'index'])->name('chats');
     
     Route::get('/orders', [OrderController::class, 'index'])->name('orders');
     Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+    Route::get('/orders/history', [OrderController::class, 'history'])->name('orders.history');
+    Route::get('/orders/info/{id}', [OrderController::class, 'info'])->name('orders.info');
     
     Route::get('/services', [ServiceController::class, 'index'])->name('services');
+    Route::get('/services/info/{id}', [ServiceController::class, 'info_id'])->name('service.info');
+    Route::get('/services/info', [ServiceController::class, 'info'])->name('services.info');
     Route::get('/services/add_to_cart/{id}', [ServiceController::class, 'add_to_cart'])->name('services.add_to_cart');
 
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');

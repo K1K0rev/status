@@ -20,6 +20,6 @@ import Footer from '@/Components/Footer.vue';
                 <slot />
             </main>
         
-            <Footer/>
+        <Footer/>
     </div>
 </template>
