@@ -31,8 +31,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
     Route::delete('/cart', [CartController::class, 'clear'])->name('cart.clear');
-    Route::put('/cart/{service}', [CartController::class, 'update'])->name('cart.update');
-    Route::delete('/cart/{service}', [CartController::class, 'destroy'])->name('cart.destroy');
+    Route::put('/cart/{service_id}', [CartController::class, 'update'])->name('cart.update');
+    Route::delete('/cart/{service_id}', [CartController::class, 'destroy'])->name('cart.destroy');
 });
 
 Route::middleware('auth')->group(function () {

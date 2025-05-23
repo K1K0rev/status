@@ -26,7 +26,7 @@ const { orders } = defineProps({
       <img src="/images/double_arrow.png" alt="" class="h-3 w-3 ml-1">
       </Link>
     </template>
-    <div v-if="orders != null">
+    <div v-if="orders.length > 0">
       <ul v-for="order in orders" :key="order.id" class="mb-4">
         <div v-if="order.status != 'complete' && order.status != 'rejected'">
           <div class="bg-white overflow-hidden shadow-lg shadow-primary/30 border rounded-lg">

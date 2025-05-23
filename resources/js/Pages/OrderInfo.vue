@@ -81,12 +81,6 @@ function barStyle(status) {
     </div>
 
   </AuthenticatedLayout>
-  <div class="flex items-center">
-    <div class="h-2 w-full bg-gray-200 overflow-hidden
-          before:block before:h-full before:bg-gradient-to-r before:from-green-500 before:to-transparent
-          before:animate-[fill-gradient_2s_linear_infinite]">
-    </div>
-  </div>
 </template>
 
 <style>

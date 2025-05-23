@@ -19,7 +19,7 @@ defineProps({
         История заказов
       </h1>
     </template>
-    <div v-if="orders != null">
+    <div v-if="orders.length > 0">
       <div v-for="order in orders" :key="order.id">
         <ul v-if="order.status == 'complete' || order.status == 'rejected'" class="mb-4">
           <div class="bg-white overflow-hidden shadow-lg shadow-primary/30 border rounded-lg">

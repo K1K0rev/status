@@ -16,9 +16,11 @@ const props = defineProps({
 
   <AuthenticatedLayout>
     <template #header>
-      <h2>
-        Информация об услугах
-      </h2>
+      Информация об услугах
+
+      <!-- <Link :href="route('services')">
+        Назад у услугам
+      </Link> -->
     </template>
     <ul class="grid grid-cols-5 gap-4">
       <li v-for="service in services" :key="service.id">

@@ -40,24 +40,24 @@ class CartController extends Controller
         return redirect()->back();
     }
 
-    public function update(Request $request, Service $service)
+    public function update(Request $request, $service_id)
     {
         $cart = Auth::user()->carts()->firstOrFail();
 
-        $cart->services()->updateExistingPivot($service->id, [
+        $cart->services()->updateExistingPivot($service_id, [
             'quantity' => $request->quantity,
         ]);
 
         return back();
     }
 
-    public function destroy(Service $service)
+    public function destroy($service_id)
     {
         $cart = Auth::user()->carts()->firstOrFail();
 
-        $cart->services()->detach($service->id);
+        $cart->services()->detach($service_id);
 
-        return redirect()->back();
+        return back();
     }
 
     public function clear()
