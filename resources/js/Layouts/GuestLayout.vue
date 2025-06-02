@@ -1,12 +1,12 @@
 <script setup>
 import { Link } from '@inertiajs/vue3';
-import BackButton from '@/Components/BackButton.vue'
+import BackButton from '@/Components/Buttons/BackButton.vue'
 </script>
 
 <template>
     <div>
         <Link href="/" class="flex h-[75px] m-8 absolute">
-            <BackButton>на главную</BackButton>
+            <BackButton>назад</BackButton>
         </Link>
     </div>
     <div
@@ -14,10 +14,10 @@ import BackButton from '@/Components/BackButton.vue'
     >
     
     <div
-    class="mt-6 w-full overflow-hidden bg-primary px-6 py-4 shadow-md sm:max-w-md sm:rounded-lg"
+    class="mt-6 w-full overflow-hidden bg-primary px-6 py-4 shadow-lg shadow-primary sm:max-w-md sm:rounded-lg"
     >
         <div class="flex justify-center">
-            <img src="/images/logo.png" alt="" class="w-24">
+            <img src="/images/icons/logo/logo.png" alt="" class="w-24 my-5">
         </div>
             <slot />
         </div>

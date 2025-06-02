@@ -1,10 +1,31 @@
 <script setup>
-import Header from '@/components/Header.vue';
-import Footer from '@/components/Footer.vue';
+import Header from '@/Components/Headers/Header.vue';
+import Alerts from '@/Components/Alerts.vue';
+
+import { usePage } from '@inertiajs/vue3';
+import { onMounted } from 'vue';
+import { useAlertStore } from '@/stores/alert';
+import { defineAsyncComponent } from 'vue';
+
+const LazyFooter = defineAsyncComponent(() =>
+  import('@/Components/Footer.vue')
+);
+
+const page = usePage()
+const store = useAlertStore()
+
+onMounted(() => {
+  const alert = page.props.alert
+  if (alert?.message) {
+    store.add(alert.type, alert.message)
+  }
+})
+
 </script>
 <template>
     <div class="min-h-screen flex flex-col">
         <Header />
+        <Alerts />
             <!-- Page Heading -->
             <header
                 class="bg-white shadow"
@@ -16,10 +37,10 @@ import Footer from '@/components/Footer.vue';
             </header>
             
             <!-- Page Content -->
-            <main class="flex-grow px-8 py-4 min-h-[calc(100vh-156px)]">
+            <main class="flex-grow px-8 py-4 min-h-[calc(100vh-156px)] flex flex-col">
                 <slot />
             </main>
         
-        <Footer />
+        <LazyFooter />
     </div>
 </template>

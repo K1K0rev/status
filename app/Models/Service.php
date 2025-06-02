@@ -15,7 +15,8 @@ class Service extends Model
         'short_description',
         'price',
         'status',
-        'img'
+        'img',
+        'icon'
     ];
 
     public function toCartItem()

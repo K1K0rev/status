@@ -33,7 +33,19 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('services', absolute: false));
+        $user = $request->user();
+
+        if($user && $user->role === 'admin') {
+            return redirect()->intended(route('admin_panel.index', absolute:false))->with('alert', [
+                'type' => 'success',
+                'message' => 'Вы успешно вошли в панель админа'
+            ]);
+        } else {
+            return redirect()->intended(route('services', absolute: false))->with('alert', [
+                'type' => 'success',
+                'message' => 'Вы успешно вошли'
+            ]);
+        }
     }
 
     /**

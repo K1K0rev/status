@@ -1,9 +1,9 @@
 <script setup>
 import Checkbox from '@/Components/Checkbox.vue';
 import GuestLayout from '@/Layouts/GuestLayout.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import FormButton from '@/Components/FormButton.vue';
+import InputError from '@/Components/Inputs/InputError.vue';
+import InputLabel from '@/Components/Inputs/InputLabel.vue';
+import FormButton from '@/Components/Buttons/FormButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
@@ -39,7 +39,7 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="login" value="Логин" />
+                <InputLabel for="login" />
 
                 <TextInput
                     id="login"
@@ -49,13 +49,14 @@ const submit = () => {
                     required
                     autofocus
                     autocomplete="username"
+                    placeholder="Логин"
                 />
 
                 <InputError class="mt-2" :message="form.errors.login" />
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password" value="Пароль" />
+                <InputLabel for="password" />
 
                 <TextInput
                     id="password"
@@ -64,6 +65,7 @@ const submit = () => {
                     v-model="form.password"
                     required
                     autocomplete="current-password"
+                    placeholder="Пароль"
                 />
 
                 <InputError class="mt-2" :message="form.errors.password" />
@@ -82,7 +84,7 @@ const submit = () => {
                 <Link
                     v-if="canResetPassword"
                     :href="route('password.request')"
-                    class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    class="rounded-md text-sm text-gray-400 hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
                     Забыли пароль?
                 </Link>

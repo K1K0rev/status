@@ -1,7 +1,7 @@
 <script setup>
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
+import InputError from '@/Components/Inputs/InputError.vue';
+import InputLabel from '@/Components/Inputs/InputLabel.vue';
+import PrimaryButton from '@/Components/Buttons/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Link, useForm, usePage } from '@inertiajs/vue3';
 
@@ -17,20 +17,24 @@ defineProps({
 const user = usePage().props.auth.user;
 
 const form = useForm({
-    name: user.name,
+    fullname: user.fullname,
+    login: user.login,
     email: user.email,
+    date_of_birth: user.date_of_birth,
+    phone: user.phone
 });
+
 </script>
 
 <template>
     <section>
         <header>
             <h2 class="text-lg font-medium text-gray-900">
-                Profile Information
+                Информация о профиле
             </h2>
 
             <p class="mt-1 text-sm text-gray-600">
-                Update your account's profile information and email address.
+                Обновите данные своего профиля
             </p>
         </header>
 
@@ -39,23 +43,40 @@ const form = useForm({
             class="mt-6 space-y-6"
         >
             <div>
-                <InputLabel for="name" value="Name" />
+                <InputLabel for="fullname" value="Имя" />
 
                 <TextInput
-                    id="name"
+                    id="fullname"
                     type="text"
                     class="mt-1 block w-full"
-                    v-model="form.name"
+                    v-model="form.fullname"
                     required
                     autofocus
-                    autocomplete="name"
+                    autocomplete="off"
+                    placeholder="Введите свое ФИО"
                 />
 
-                <InputError class="mt-2" :message="form.errors.name" />
+                <InputError class="mt-2" :message="form.errors.fullname" />
             </div>
 
             <div>
-                <InputLabel for="email" value="Email" />
+                <InputLabel for="login" value="Логин" />
+
+                <TextInput
+                    id="login"
+                    type="text"
+                    class="mt-1 block w-full"
+                    v-model="form.login"
+                    required
+                    autocomplete="off"
+                    placeholder="Введите свой логин"
+                />
+
+                <InputError class="mt-2" :message="form.errors.login" />
+            </div>
+
+            <div>
+                <InputLabel for="email" value="Почта" />
 
                 <TextInput
                     id="email"
@@ -64,21 +85,54 @@ const form = useForm({
                     v-model="form.email"
                     required
                     autocomplete="username"
+                    placeholder="Введите свою почту"
                 />
 
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
 
-            <div v-if="mustVerifyEmail && user.email_verified_at === null">
+            <div>
+                <InputLabel for="date_of_birth" value="Дата рождения" />
+
+                <TextInput
+                    id="date_of_birth"
+                    type="date"
+                    class="mt-1 block w-full"
+                    v-model="form.date_of_birth"
+                    required
+                    autocomplete="off"
+                    placeholder="Укажите дату рождения"
+                />
+
+                <InputError class="mt-2" :message="form.errors.date_of_birth" />
+            </div>
+
+            <div>
+                <InputLabel for="phone" value="Телефон" />
+
+                <TextInput
+                    id="phone"
+                    type="text"
+                    class="mt-1 block w-full"
+                    v-model="form.phone"
+                    required
+                    autocomplete="off"
+                    placeholder="Укажите свой телефон"
+                />
+
+                <InputError class="mt-2" :message="form.errors.phone" />
+            </div>
+
+            <div v-if="user.email_verified_at === null">
                 <p class="mt-2 text-sm text-gray-800">
-                    Your email address is unverified.
+                    Ваша почта не подтверждена.
                     <Link
                         :href="route('verification.send')"
                         method="post"
                         as="button"
-                        class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none"
                     >
-                        Click here to re-send the verification email.
+                        Нажмите здесь, чтобы отправить электронное письмо с проверкой.
                     </Link>
                 </p>
 
@@ -86,12 +140,12 @@ const form = useForm({
                     v-show="status === 'verification-link-sent'"
                     class="mt-2 text-sm font-medium text-green-600"
                 >
-                    A new verification link has been sent to your email address.
+                    Ссылка на проверку была отправлена ​​на ваш адрес электронной почты.
                 </div>
             </div>
 
             <div class="flex items-center gap-4">
-                <PrimaryButton :disabled="form.processing">Save</PrimaryButton>
+                <PrimaryButton :disabled="form.processing">Сохранить</PrimaryButton>
 
                 <Transition
                     enter-active-class="transition ease-in-out"
@@ -103,7 +157,7 @@ const form = useForm({
                         v-if="form.recentlySuccessful"
                         class="text-sm text-gray-600"
                     >
-                        Saved.
+                        Сохранено
                     </p>
                 </Transition>
             </div>

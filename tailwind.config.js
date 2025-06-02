@@ -1,5 +1,6 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
+import textShadow from 'tailwindcss-textshadow';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -19,11 +20,12 @@ export default {
                 'primary': '#1D2A40',
                 'secondary': '#FFD700',
             },
-            dropShadow: {
-                'dark': '0 6px 2px rgba(0, 0, 0, 0.75)',
+            textShadow: {
+                'dark': '0 4px 10px #000',
+                'xl': '6px 6px 12px rgba(0, 0, 0, 0.3)'
             },
         },
     },
 
-    plugins: [forms],
+    plugins: [forms, textShadow],
 };

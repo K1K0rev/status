@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Chat;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -12,12 +13,11 @@ class OrderController extends Controller
 {
     public function index()
     {
-
         $user = Auth::user();
 
         $orders = Order::where('user_id', $user->id)->with('services')->get();
 
-        return Inertia::render('Orders', [
+        return Inertia::render('Order/Orders', [
             'orders' => $orders->sortBy('created_at')->values()
         ]);
     }
@@ -28,7 +28,7 @@ class OrderController extends Controller
         $cartItems = Cart::where('user_id', $user->id)->with('services')->first();
 
         $total = $cartItems->services->sum(function ($service) {
-                return $service->pivot->quantity * $service->price;
+            return $service->pivot->quantity * $service->price;
         });
 
         $order = Order::create([
@@ -43,9 +43,20 @@ class OrderController extends Controller
             ]);
         }
 
+        $chat = Chat::create([
+            'order_id' => $order->id,
+        ]);
+
+        $chat->users()->attach($user->id, [
+            'user_id' => $user->id,
+            'chat_id' => $chat->id
+        ]);
+
         $cartItems->services()->detach();
 
-        return redirect()->route('orders');
+        return redirect()->route('orders')->with('alert', [
+            'type' => 'success',
+            'message' => 'Заказ успешно создан']);
     }
 
     public function history() {
@@ -54,8 +65,8 @@ class OrderController extends Controller
 
         $orders = Order::where('user_id', $user->id)->with('services')->get();
 
-        return Inertia::render('OrdersHistory', [
-            'orders' => $orders->sortBy('created_at')->values()
+        return Inertia::render('Order/OrdersHistory', [
+            'orders' => $orders->sortBy('created_at')
         ]);
     }
 
@@ -63,7 +74,7 @@ class OrderController extends Controller
 
         $order = Auth::user()->orders()->with('history_orders')->find($id);
 
-        return Inertia::render('OrderInfo', [
+        return Inertia::render('Order/OrderInfo', [
             'order' => $order
         ]);
     }

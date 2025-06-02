@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -21,6 +22,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'fullname',
+        'login',
         'email',
         'password',
         'date_of_birth',
@@ -56,9 +58,9 @@ class User extends Authenticatable
         return $this->hasOne(Cart::class);
     }
 
-    public function chats() : HasMany
+    public function chats() : BelongsToMany
     {
-        return $this->hasMany(Chat::class);
+        return $this->belongsToMany(Chat::class, 'user_chats');
     }
 
     public function messages() : HasMany

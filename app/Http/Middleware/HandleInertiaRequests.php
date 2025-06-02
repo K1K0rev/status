@@ -34,6 +34,10 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            'admin' => [
+                'admin' => optional($request->user())->role === 'admin'
+            ],
+            'alert' => fn () => $request->session()->get('alert'),
         ];
     }
 }

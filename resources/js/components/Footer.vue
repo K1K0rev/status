@@ -8,11 +8,11 @@
                 <span class="uppercase">Контакты</span>
 
                     <div class="flex items-center gap-2">
-                        <img src="/images/phone_light.png" alt="Телефон" class="w-auto h-8">
+                        <img src="/images/icons/phone/phone_light.png" alt="Телефон" class="w-auto h-8">
                         <span>+7 (000) 000-00-00</span>
                     </div>
                     <div class="flex items-center gap-2 flex-shrink-0">
-                        <img src="/images/map_light.png" alt="Местоположение" class="w-auto h-8">
+                        <img src="/images/icons/map/map_light.png" alt="Местоположение" class="w-auto h-8">
                         <span>Город, название улицы, дом 1</span>
                     </div>
 

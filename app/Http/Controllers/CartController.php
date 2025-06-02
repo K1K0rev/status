@@ -20,9 +20,9 @@ class CartController extends Controller
             });
         } else {
             $total = 0;
-        }   
+        }
 
-        return Inertia::render('Cart', [
+        return Inertia::render('Cart/Cart', [
             'cartItems' => $cartItems,
             'total' => $total,
         ]);
