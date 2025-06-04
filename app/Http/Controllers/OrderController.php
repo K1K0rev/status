@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
-use App\Models\Chat;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class OrderController extends Controller
@@ -22,44 +19,8 @@ class OrderController extends Controller
         ]);
     }
 
-    public function store()
+    public function history()
     {
-        $user = Auth::user();
-        $cartItems = Cart::where('user_id', $user->id)->with('services')->first();
-
-        $total = $cartItems->services->sum(function ($service) {
-            return $service->pivot->quantity * $service->price;
-        });
-
-        $order = Order::create([
-            'user_id' => $user->id,
-            'total_price' => $total
-        ]);
-
-        foreach ($cartItems->services as $service) {
-            $order->services()->attach($service->id, [
-                'quantity' => $service->pivot->quantity,
-                'price' => $service->price,
-            ]);
-        }
-
-        $chat = Chat::create([
-            'order_id' => $order->id,
-        ]);
-
-        $chat->users()->attach($user->id, [
-            'user_id' => $user->id,
-            'chat_id' => $chat->id
-        ]);
-
-        $cartItems->services()->detach();
-
-        return redirect()->route('orders')->with('alert', [
-            'type' => 'success',
-            'message' => 'Заказ успешно создан']);
-    }
-
-    public function history() {
 
         $user = Auth::user();
 
@@ -70,12 +31,26 @@ class OrderController extends Controller
         ]);
     }
 
-    public function info($id) {
-
+    public function info($id)
+    {
         $order = Auth::user()->orders()->with('history_orders')->find($id);
 
         return Inertia::render('Order/OrderInfo', [
             'order' => $order
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        $order = Auth::user()->orders()->findOrFail($id);
+
+        abort_unless($order->user_id == Auth::id(), 403, 'Вы не можете удалить чужой заказ');
+
+        $order->delete();
+
+        return redirect()->back()->with('alert', [
+            'type' => 'success',
+            'message' => 'Заказ успешно удален'
         ]);
     }
 }

@@ -35,8 +35,8 @@ class AuthenticatedSessionController extends Controller
 
         $user = $request->user();
 
-        if($user && $user->role === 'admin') {
-            return redirect()->intended(route('admin_panel.index', absolute:false))->with('alert', [
+        if ($user && $user->role === 'admin') {
+            return redirect()->intended(route('admin_panel.index', absolute: false))->with('alert', [
                 'type' => 'success',
                 'message' => 'Вы успешно вошли в панель админа'
             ]);

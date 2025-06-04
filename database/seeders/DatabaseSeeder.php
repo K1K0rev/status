@@ -27,37 +27,43 @@ class DatabaseSeeder extends Seeder
                 'name' => 'огнезащита',
                 'short_description' => 'укпупк',
                 'price' => 10000,
-                'img' => '/images/card_vertical_1.jpeg'
+                'img' => '/images/banners/card_vertical_1.jpeg',
+                'icon' => '/images/icons/services/fire.png'
             ],
             [
                 'name' => 'пескоструй',
                 'short_description' => 'умукм',
                 'price' => 10000,
-                'img' => '/images/card_vertical_1.jpeg'
+                'img' => '/images/banners/card_vertical_1.jpeg',
+                'icon' => '/images/icons/services/sand.png'
             ],
             [
                 'name' => 'огнезащита',
                 'short_description' => 'укпупк',
                 'price' => 10000,
-                'img' => '/images/card_vertical_1.jpeg'
+                'img' => '/images/banners/card_vertical_1.jpeg',
+                'icon' => '/images/icons/services/fire.png'
             ],
             [
                 'name' => 'пескоструй',
                 'short_description' => 'умукм',
                 'price' => 10000,
-                'img' => '/images/card_vertical_1.jpeg'
+                'img' => '/images/banners/card_vertical_1.jpeg',
+                'icon' => '/images/icons/services/sand.png'
             ],
             [
                 'name' => 'огнезащита',
                 'short_description' => 'укпупк',
                 'price' => 10000,
-                'img' => '/images/card_vertical_1.jpeg'
+                'img' => '/images/banners/card_vertical_1.jpeg',
+                'icon' => '/images/icons/services/fire.png'
             ],
             [
                 'name' => 'пескоструй',
                 'short_description' => 'умукм',
                 'price' => 10000,
-                'img' => '/images/card_vertical_1.jpeg'
+                'img' => '/images/banners/card_vertical_1.jpeg',
+                'icon' => '/images/icons/services/sand.png'
             ]
         ];
 

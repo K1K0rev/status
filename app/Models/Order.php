@@ -14,7 +14,18 @@ class Order extends Model
         'user_id',
         'service_id',
         'status',
-        'total_price'
+        'total_price',
+        'height',
+        'surface_area',
+        'rent_equipment',
+        'complexity',
+        'accessibility_surface',
+        'accessibility_workplace',
+        'protect_other_components',
+        'schedule',
+        'combined_work',
+        'start_date',
+        'end_date'
     ];
 
     public function user(): BelongsTo

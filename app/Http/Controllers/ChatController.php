@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Message;
-use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
@@ -39,7 +38,7 @@ class ChatController extends Controller
 	public function storeMessage(Request $request, $id) 
 	{
 		$request->validate([
-			'text' => ['required', 'string']
+			'text' => 'required|string'
 		]);
 
 		Message::create([

@@ -21,12 +21,26 @@ const {order} = defineProps({
 
       <BackPageButton link="admin_panel.index" />
     </template>
-
-		<span class="text-xl">Информация о заказе</span>
-
-		<div>
-			<!-- <pre>{{ JSON.stringify(order) }}</pre> -->
-			<span>{{ order.user.login }}</span>
-		</div>
+		<section class="mb-4 flex flex-col gap-4">
+			<span class="text-xl">Информация о заказчике</span>
+	
+			<div>
+				<span>Логин заказчика: {{ order.user.login }}</span>
+				<div v-if="order.user.fullname">
+					<span>Имя заказчика: {{ order.user.fullname }}</span>
+				</div>
+				<div v-if="order.user.phone">
+					<span>Телефон заказчика: {{ order.user.phone }}</span>
+				</div>
+			</div>
+		</section>
+		
+		<section class="mb-4 flex flex-col gap-4">
+			<span class="text-xl">Информация о заказe</span>
+			<pre>{{ JSON.stringify(order.services) }}</pre>
+			<div v-for="service in order.services" :key="service.id">
+				<span>Услуга: {{ service.name }}</span>
+			</div>
+		</section>
 	</AdminPanelLayot>
 </template>

@@ -1,12 +1,18 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
-import { Head, Link } from '@inertiajs/vue3'
+import { Head, Link, router } from '@inertiajs/vue3'
 import { route } from 'ziggy-js'
 import NextPageButton from '@/Components/Buttons/NextPageButton.vue'
 
 const { orders } = defineProps({
   orders: Array
 })
+
+const deleteItem = (order_id) => {
+	router.delete(route('order.destroy', order_id), {
+		preserveScroll: true,
+	});
+}
 </script>
 
 <template>
@@ -19,12 +25,6 @@ const { orders } = defineProps({
         Активные заказы
       </h2>
 
-      <!-- <Link :href="route('orders.history')" class="text-lg flex items-baseline">
-      <span class="hover:text-xl transition-all easy-in-out duration-700">
-        Посмотреть историю заказов
-      </span>
-      <img src="/images/double_arrow.png" alt="" class="h-3 w-3 ml-1">
-      </Link> -->
       <NextPageButton text="Посмотреть историю заказов" link="orders.history" />
     </template>
     <div v-if="orders.length > 0">
@@ -54,11 +54,14 @@ const { orders } = defineProps({
                   </div>
                 </div>
               </div>
-  
+
               <div class="mt-6 flex justify-between items-center">
                 <div class="text-xl font-bold">
                   Итого: {{ order.total_price }} ₽
                 </div>
+                <button @click="deleteItem(order.id)" type="button" class="text-red-500 hover:text-red-700">
+                  Удалить
+                </button>
               </div>
             </div>
           </div>
@@ -66,7 +69,7 @@ const { orders } = defineProps({
       </ul>
     </div>
     <div v-else class="h-full text-center">
-			<p class="text-gray-500">Нет активных заказов</p>
-		</div>
+      <p class="text-gray-500">Нет активных заказов</p>
+    </div>
   </AuthenticatedLayout>
 </template>

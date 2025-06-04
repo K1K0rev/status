@@ -24,9 +24,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/chat/message/{id}', [ChatController::class, 'storeMessage'])->name('chat.storeMessage');
     
     Route::get('/orders', [OrderController::class, 'index'])->name('orders');
-    Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
     Route::get('/orders/history', [OrderController::class, 'history'])->name('orders.history');
     Route::get('/orders/info/{id}', [OrderController::class, 'info'])->name('orders.info');
+    Route::delete('/orders/destroy/{id}', [OrderController::class, 'destroy'])->name('order.destroy');
     
     Route::get('/services', [ServiceController::class, 'index'])->name('services');
     Route::get('/services/info/{id}', [ServiceController::class, 'info_id'])->name('service.info');
@@ -34,7 +34,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/services/add_to_cart/{id}', [ServiceController::class, 'add_to_cart'])->name('services.add_to_cart');
 
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-    Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
+    Route::post('/cart/store', [CartController::class, 'store'])->name('cart.store');
+    Route::post('/cart', [CartController::class, 'calculate'])->name('cart.calculate');
     Route::delete('/cart', [CartController::class, 'clear'])->name('cart.clear');
     Route::put('/cart/{service_id}', [CartController::class, 'update'])->name('cart.update');
     Route::delete('/cart/{service_id}', [CartController::class, 'destroy'])->name('cart.destroy');

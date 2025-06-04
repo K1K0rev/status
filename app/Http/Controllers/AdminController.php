@@ -19,7 +19,7 @@ class AdminController extends Controller
 
     public function show($id) {
 
-        $order = Order::with('user:id,fullname,login')->findOrFail($id);
+        $order = Order::with('user:id,fullname,login', 'services')->findOrFail($id);
 
         return Inertia::render('AdminPanel/Order', [
             'order' => $order
