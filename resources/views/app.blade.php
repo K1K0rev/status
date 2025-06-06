@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <meta name="handheldfriendly" content="true">
         <meta name="mobileoptimized" content="width">
@@ -11,6 +11,8 @@
         <link rel="icon" href="/images/icons/logo/logo.png" type="image/x-icon">
 
         <meta name="format-detection" content="telephone=no">
+
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title inertia>{{ config('app.name', 'Статус') }}</title>
 
@@ -21,6 +23,5 @@
     </head>
     <body class="font-sans antialiased">
         @inertia
-        @routes
     </body>
 </html>

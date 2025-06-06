@@ -32,18 +32,6 @@ class CartController extends Controller
         ]);
     }
 
-
-    // public function store(Request $request)
-    // {
-    //     $item = Auth::user()->cartItems()->firstOrCreate([
-    //         'service_id' => $request->service_id
-    //     ]);
-
-    //     $item->increment('quantity');
-
-    //     return redirect()->back();
-    // }
-
     public function store(StoreOrderRequest $request)
     {
         $validated = $request->validated();

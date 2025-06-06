@@ -13,7 +13,7 @@ class Message extends Model
         'text',
     ];
 
-    public function chats() : BelongsTo
+    public function chat() : BelongsTo
     {
         return $this->belongsTo(Chat::class);
     }

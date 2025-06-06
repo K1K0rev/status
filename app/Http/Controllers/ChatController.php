@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewChatMessage;
+use App\Models\Chat;
 use App\Models\Message;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -35,18 +37,14 @@ class ChatController extends Controller
 		]);
 	}
 
-	public function storeMessage(Request $request, $id) 
+	public function storeMessage(Chat $chat, Request $request)
 	{
-		$request->validate([
-			'text' => 'required|string'
-		]);
-
-		Message::create([
-			'chat_id' => $id,
-			'user_id' => auth()->id(),
+		
+		$chat->messages()->create([
 			'text' => $request->text,
+			'user_id' => auth()->id(),
 		]);
 
-		return back();
+		return redirect()->back();
 	}
 }
